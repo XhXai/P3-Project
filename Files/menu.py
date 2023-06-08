@@ -20,7 +20,10 @@ def display_menu():
     print("4. Update a site")
     print("5. Delete a site")
     print("6. Add a new password")
-    print("7. Exit")
+    print("7. Delete a password")
+    print("8. Display all users")
+    print("9. Display all sites")
+    print("10. Exit")
 
 def add_user():
     username = input("Enter the username: ")
@@ -120,16 +123,42 @@ def add_password():
     else:
         print("Site not found.")
 
+def delete_password():
+    password_id = input("Enter the password ID to delete: ")
+
+    # Query the Password instance by password_id
+    password = session.query(Password).filter_by(password_id=password_id).first()
+
+    if password:
+        # Delete the password
+        session.delete(password)
+        session.commit()
+        print("Password deleted successfully.")
+    else:
+        print("Password not found.")
+
+def display_users():
+    users = session.query(User).all()
+    print("Users:")
+    for user in users:
+        print(f"User ID: {user.user_id}, Username: {user.username}, Email: {user.email}")
+
+def display_sites():
+    sites = session.query(Sites).all()
+    print("Sites:")
+    for site in sites:
+        print(f"Site ID: {site.site_id}, Name: {site.site_name}, URL: {site.url}, User ID: {site.user_id}")
+
+
 # Create a table defined by the class structure
 User.metadata.create_all(engine)
 Sites.metadata.create_all(engine)
 Password.metadata.create_all(engine)
 
 if __name__ == "__main__":
-    # Code to execute
     while True:
         display_menu()
-        choice = input("Enter your choice (1-7): ")
+        choice = input("Enter your choice (1-10): ")
 
         if choice == '1':
             add_user()
@@ -144,8 +173,13 @@ if __name__ == "__main__":
         elif choice == '6':
             add_password()
         elif choice == '7':
+            delete_password()
+        elif choice == '8':
+            display_users()
+        elif choice == '9':
+            display_sites()
+        elif choice == '10':
             print("Exiting...")
             break
         else:
             print("Invalid choice. Please try again.")
-

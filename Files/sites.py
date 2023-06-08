@@ -43,20 +43,20 @@ session = Session()
 Base.metadata.create_all(engine)
 
 
- # User Input
-name = input("Enter name of site.....")
+#  # User Input
+# name = input("Enter name of site.....")
 
 
-# Create a site instance
-new_site = Sites(site_name=name)
+# # Create a site instance
+# new_site = Sites(site_name=name)
 
 
-# Add the new site to the session
-session.add(new_site)
+# # Add the new site to the session
+# session.add(new_site)
 
 
-# Commit the session
-session.commit()
+# # Commit the session
+# session.commit()
 
 # Query the site by its site_id or any other unique identifier
 # site_id = 1  # Replace with the actual site ID you want to update
@@ -75,14 +75,14 @@ session.commit()
 
 
 # Query the site by its site_id or any other unique identifier
-# site_id = 1 # Replace with the actual site ID you want to delete
-# site = session.query(Sites).filter_by(site_id=site_id).first()
+site_id = 2 # Replace with the actual site ID you want to delete
+site = session.query(Sites).filter_by(site_id=site_id).first()
 
-# if site:
-#     # Delete the site
-#     session.delete(site)
-#     session.commit()
-#     print("Site deleted successfully.")
-# else:
-#     print("Site not found.")
+if site:
+    # Delete the site
+    session.delete(site)
+    session.commit()
+    print("Site deleted successfully.")
+else:
+    print("Site not found.")
 

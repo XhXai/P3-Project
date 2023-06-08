@@ -36,7 +36,7 @@ session.add(new_user)
 #Commit the session
 session.commit()
 
-# Query the site by its site_id or any other unique identifier
+#Query the site by its site_id or any other unique identifier
 # user_id = 2 # Replace with the actual site ID you want to delete
 # User = session.query(User).filter_by(user_id=user_id).first()
 
