@@ -71,7 +71,7 @@ site_name = input("Enter the name of the site: ")
 new_site = Sites(site_name=site_name)
 
 # Generate passwords as a list
-passwords = [generate_password() for _ in range(5)]  # Generate 5 passwords
+passwords = [generate_password() for _ in range(2)]  # Generate 5 passwords
 
 # Create password instances and add them to the site
 for password in passwords:
